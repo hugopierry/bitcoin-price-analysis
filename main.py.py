@@ -1,6 +1,6 @@
-from time import sleep
+
 import requests
-import pandas as pd
+
 
 url = "https://economia.awesomeapi.com.br/json/last/BTC-BRL"
 
@@ -43,7 +43,7 @@ def formatar_real(valor):
 print("="*50)
 print("ANÁLISE DE MERCADO — BTC/BRL".center(50))
 print("="*50)
-sleep(2)
+
 print(f"Cotação atual: R$ {formatar_real(bid)}".center(50))
 print(f"Máxima do período:  R$ {formatar_real(high)}".center(50))
 print(f"Mínima do período: R$ {formatar_real(low)}".center(50))
