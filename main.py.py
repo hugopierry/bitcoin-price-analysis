@@ -2,6 +2,7 @@
 import requests
 
 
+
 url = "https://economia.awesomeapi.com.br/json/last/BTC-BRL"
 
 # Exemplo de resposta da API para consulta dos campos disponíveis.
@@ -10,7 +11,7 @@ url = "https://economia.awesomeapi.com.br/json/last/BTC-BRL"
 #   "BTCBRL": {
 #     "code": "BTC",
 #     "codein": "BRL",
-#     "name": "Bitcoin/Real Brasileiro",
+#     "name": "Bitcoin/Real Brasileiro", 
 #     "high": "437644",
 #     "low": "397171",
 #     "varBid": "23860",
@@ -29,6 +30,7 @@ high = float(dados["BTCBRL"]["high"])
 low = float(dados["BTCBRL"]["low"])
 varBid = float(dados["BTCBRL"]["varBid"])
 pctChange = float(dados["BTCBRL"]["pctChange"])
+create_date = (dados["BTCBRL"]["create_date"])
 
 
 def formatar_real(valor):
@@ -49,6 +51,9 @@ print(f"Máxima do período:  R$ {formatar_real(high)}".center(50))
 print(f"Mínima do período: R$ {formatar_real(low)}".center(50))
 print(f"Variação em reais: R$ {formatar_real(varBid)}".center(50))
 print(f"Variação percentual: {formatar_real(pctChange)}%".center(50))
+print(f"Atualização: {(create_date)}".center(50))
+
+
 
 print("="*50)
 print("Dados obtidos via API".center(50))
