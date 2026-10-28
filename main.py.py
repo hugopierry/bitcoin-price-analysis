@@ -1,28 +1,12 @@
 
-
+import sys
 import requests
 
 url = "https://economia.awesomeapi.com.br/json/last/BTC-BRL"
 
-# Exemplo de resposta da API para consulta dos campos disponíveis.
-
-# dados_api = {
-#   "BTCBRL": {
-#     "code": "BTC",
-#     "codein": "BRL",
-#     "name": "Bitcoin/Real Brasileiro", 
-#     "high": "437644",
-#     "low": "397171",
-#     "varBid": "23860",
-#     "pctChange": "5.883",
-#     "bid": "429418",
-#     "ask": "429419",
-#     "timestamp": "1792984472",
-#     "create_date": "2026-10-26 00:14:32"
-#   }
-# }
 try: 
     resposta = requests.get(url,timeout=10)
+    resposta.raise_for_status()
     dados = resposta.json()
 
     bid = float(dados["BTCBRL"]["bid"])
@@ -33,8 +17,8 @@ try:
     preco_referencia = bid - varBid
     percentual_variacao = (varBid / preco_referencia) * 100
 except (requests.exceptions.RequestException, ValueError, KeyError):
-    print("API indisponível no momento. Tente mais tarde.")
-    exit()
+    print("Sem conexão ou API indisponível.\nTente mais tarde.")
+    sys.exit(1)
 
 def formatar_real(valor):
     texto = f"{valor:,.2f}"
